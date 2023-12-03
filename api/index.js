@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
-// import listingRouter from "./routes/listing.route.js";
+import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 // can not use env variable directly to backend, need dotenv packge
@@ -35,6 +35,7 @@ app.listen(3000, () => {
 //use all routes creted using router
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/listing", listingRouter);
 
 // if we get any error from backend (like duplicate key error)
 // then we have to handele it and show it properly to the user.
