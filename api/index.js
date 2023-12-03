@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 // import listingRouter from "./routes/listing.route.js";
-// import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 import path from "path";
 // can not use env variable directly to backend, need dotenv packge
 dotenv.config();
@@ -24,6 +24,9 @@ const app = express();
 
 // allow json as input(body.body in json format of request) to the server
 app.use(express.json());
+
+// inorder to get data from cookies - user authentication - verify function
+app.use(cookieParser());
 
 app.listen(3000, () => {
   console.log(" - Server is running on port 3000.");
