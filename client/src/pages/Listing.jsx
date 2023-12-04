@@ -60,6 +60,7 @@ export default function Listing() {
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
+                {console.log(url)}
                 <div
                   className="h-[550px]"
                   style={{
