@@ -6,6 +6,7 @@ import authRouter from "./routes/auth.route.js";
 import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
+
 // can not use env variable directly to backend, need dotenv packge
 dotenv.config();
 
@@ -18,6 +19,9 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+// dynamic path name
+const __dirname = path.resolve();
 
 // creating express server
 const app = express();
@@ -36,6 +40,12 @@ app.listen(3000, () => {
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 // if we get any error from backend (like duplicate key error)
 // then we have to handele it and show it properly to the user.
